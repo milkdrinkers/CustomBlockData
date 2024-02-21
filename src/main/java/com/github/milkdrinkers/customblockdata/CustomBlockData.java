@@ -60,7 +60,7 @@ public class CustomBlockData implements PersistentDataContainer {
     /**
      * The default package name that must be changed
      */
-    private static final char[] DEFAULT_PACKAGE = new char[]{'c', 'o', 'm', '.', 'j', 'e', 'f', 'f', '_', 'm', 'e', 'd', 'i', 'a', '.', 'c', 'u', 's', 't', 'o', 'm', 'b', 'l', 'o', 'c', 'k', 'd', 'a', 't', 'a'};
+    private static final String DEFAULT_PACKAGE = "com.github.milkdrinkers.customblockdata";
 
     /**
      * Set of "dirty block positions", that is blocks that have been modified and need to be saved to the chunk
@@ -183,7 +183,7 @@ public class CustomBlockData implements PersistentDataContainer {
      * Prints a nag message when the CustomBlockData package is not relocated
      */
     private static void checkRelocation() {
-        if (CustomBlockData.class.getPackage().getName().equals(new String(DEFAULT_PACKAGE))) {
+        if (CustomBlockData.class.getPackage().getName().equals(DEFAULT_PACKAGE)) {
             try {
                 JavaPlugin plugin = JavaPlugin.getProvidingPlugin(CustomBlockData.class);
                 plugin.getLogger().warning("Nag author(s) " + String.join(", ", plugin.getPluginMeta().getAuthors()) + " of plugin " + plugin.getName() + " for not relocating the CustomBlockData package.");
