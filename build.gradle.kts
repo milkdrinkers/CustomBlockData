@@ -10,7 +10,7 @@ plugins {
 }
 
 group = "com.github.milkdrinkers"
-version = "2.2.2"
+version = "1.0.0"
 description = "Bukkit API Library to add PersistentDataContainers to blocks"
 
 java {
