@@ -186,7 +186,7 @@ public class CustomBlockData implements PersistentDataContainer {
         if (CustomBlockData.class.getPackage().getName().equals(new String(DEFAULT_PACKAGE))) {
             try {
                 JavaPlugin plugin = JavaPlugin.getProvidingPlugin(CustomBlockData.class);
-                plugin.getLogger().warning("Nag author(s) " + String.join(", ", plugin.getDescription().getAuthors()) + " of plugin " + plugin.getName() + " for not relocating the CustomBlockData package.");
+                plugin.getLogger().warning("Nag author(s) " + String.join(", ", plugin.getPluginMeta().getAuthors()) + " of plugin " + plugin.getName() + " for not relocating the CustomBlockData package.");
             } catch (IllegalArgumentException exception) {
                 // Could not get plugin
             }
