@@ -32,7 +32,7 @@ dependencies {
     compileOnly("org.jetbrains:annotations:24.1.0")
     annotationProcessor("org.jetbrains:annotations:24.1.0")
 
-    compileOnly("io.papermc.paper:paper-api:1.20.4-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:1.16.5-R0.1-SNAPSHOT")
 
     testImplementation(platform("org.junit:junit-bom:5.10.2"))
     testImplementation("org.junit.jupiter:junit-jupiter")
@@ -79,7 +79,7 @@ publishing {
     publications {
         create<MavenPublication>("maven") {
             groupId = "com.github.milkdrinkers"
-            artifactId = "custom-block-data"
+            artifactId = "customblockdata"
             version = "${rootProject.version}"
 
             pom {
