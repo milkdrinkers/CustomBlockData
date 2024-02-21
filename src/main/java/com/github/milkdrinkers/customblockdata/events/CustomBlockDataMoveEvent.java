@@ -25,13 +25,12 @@ package com.github.milkdrinkers.customblockdata.events;
 import com.github.milkdrinkers.customblockdata.CustomBlockData;
 import org.bukkit.block.Block;
 import org.bukkit.event.Event;
-import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 
 /**
  * Called when a block with CustomBlockData is moved by a piston to a new location.
- *
+ * <p>
  * Blocks with protected CustomBlockData (see {@link CustomBlockData#isProtected()} will not trigger this event, however
  * it is possible that unprotected CustomBlockData will be moved to a destination block with protected CustomBlockData. You have
  * to cancel this event yourself to prevent this.

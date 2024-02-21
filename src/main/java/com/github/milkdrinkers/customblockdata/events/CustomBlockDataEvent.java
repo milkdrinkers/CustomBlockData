@@ -39,10 +39,10 @@ import java.util.List;
 
 /**
  * Represents an event that removes, changes or moves CustomBlockData due to regular Bukkit Events.
- *
+ * <p>
  * This event gets called during the underlying Bukkit Event's MONITOR listening phase. If the Bukkit Event
  * was already cancelled, this event will not be called.
- *
+ * <p>
  * If this event is cancelled, CustomBlockData will not be removed, changed or moved.
  */
 public class CustomBlockDataEvent extends Event implements Cancellable {
@@ -129,23 +129,27 @@ public class CustomBlockDataEvent extends Event implements Cancellable {
     public enum Reason {
         /**
          * Represents a block being broken by a player
+         *
          * @see BlockBreakEvent
          */
         BLOCK_BREAK(BlockBreakEvent.class),
         /**
          * Represents a block being replaced by a new block (for example STONE being placed into a TALL_GRASS)
+         *
          * @see BlockPlaceEvent
          * @see BlockMultiPlaceEvent
          */
         BLOCK_PLACE(BlockPlaceEvent.class, BlockMultiPlaceEvent.class),
         /**
          * Represents a block being destroyed by an explosion
+         *
          * @see BlockExplodeEvent
          * @see EntityExplodeEvent
          */
         EXPLOSION(EntityExplodeEvent.class, BlockExplodeEvent.class),
         /**
          * Represents a block being moved by a piston
+         *
          * @see CustomBlockDataMoveEvent
          * @see BlockPistonExtendEvent
          * @see BlockPistonRetractEvent
@@ -153,6 +157,7 @@ public class CustomBlockDataEvent extends Event implements Cancellable {
         PISTON(BlockPistonExtendEvent.class, BlockPistonRetractEvent.class),
         /**
          * Represents a block being destroyed by fire
+         *
          * @see BlockBurnEvent
          */
         BURN(BlockBurnEvent.class),
@@ -163,29 +168,32 @@ public class CustomBlockDataEvent extends Event implements Cancellable {
          * Example: When a player steps on REDSTONE_ORE, an EntityChangeBlockEvent is called because the BlockState's
          * "lit" tag changes from false to true. However, this will not lead to removal of CustomBlockData because
          * the block's material is still REDSTONE_ORE.
-         *
          */
         ENTITY_CHANGE_BLOCK(EntityChangeBlockEvent.class),
         /**
          * Represents a block being destroyed by melting, etc. A {@link BlockFadeEvent} will only trigger
          * removal of CustomBlockData when the block's material changes. The event will not be called for fire
          * burning out.
+         *
          * @see BlockFadeEvent
          */
         FADE(BlockFadeEvent.class),
         /**
          * Represents a block being changed by a structure (Sapling -> Tree, Mushroom -> Huge Mushroom), naturally or using bonemeal.
+         *
          * @see StructureGrowEvent
          */
         STRUCTURE_GROW(StructureGrowEvent.class),
         /**
          * Represents a block being changed by fertilizing a given block with bonemeal.
+         *
          * @see BlockFertilizeEvent
          */
         FERTILIZE(BlockFertilizeEvent.class),
         /**
          * Represents leaves decaying. This is currently not called because of performance reasons. In future versions,
          * there will be a method to enable listening to this.
+         *
          * @deprecated Draft API
          */
         @Deprecated

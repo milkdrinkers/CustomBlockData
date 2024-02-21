@@ -71,18 +71,18 @@ public class CustomBlockData implements PersistentDataContainer {
      * Builtin list of native PersistentDataTypes
      */
     private static final PersistentDataType<?, ?>[] PRIMITIVE_DATA_TYPES = new PersistentDataType<?, ?>[]{
-            PersistentDataType.BYTE,
-            PersistentDataType.SHORT,
-            PersistentDataType.INTEGER,
-            PersistentDataType.LONG,
-            PersistentDataType.FLOAT,
-            PersistentDataType.DOUBLE,
-            PersistentDataType.STRING,
-            PersistentDataType.BYTE_ARRAY,
-            PersistentDataType.INTEGER_ARRAY,
-            PersistentDataType.LONG_ARRAY,
-            PersistentDataType.TAG_CONTAINER_ARRAY,
-            PersistentDataType.TAG_CONTAINER};
+        PersistentDataType.BYTE,
+        PersistentDataType.SHORT,
+        PersistentDataType.INTEGER,
+        PersistentDataType.LONG,
+        PersistentDataType.FLOAT,
+        PersistentDataType.DOUBLE,
+        PersistentDataType.STRING,
+        PersistentDataType.BYTE_ARRAY,
+        PersistentDataType.INTEGER_ARRAY,
+        PersistentDataType.LONG_ARRAY,
+        PersistentDataType.TAG_CONTAINER_ARRAY,
+        PersistentDataType.TAG_CONTAINER};
 
     /**
      * NamespacedKey for the CustomBlockData "protected" key
@@ -102,7 +102,7 @@ public class CustomBlockData implements PersistentDataContainer {
     /**
      * The maximum X and Z coordinate of any block inside a chunk.
      */
-    private static final int CHUNK_MAX_XZ = (2 << 3) -1;
+    private static final int CHUNK_MAX_XZ = (2 << 3) - 1;
 
     /**
      * Whether WorldInfo#getMinHeight() method exists. In some very specific versions, it's directly declared in World.
@@ -195,6 +195,7 @@ public class CustomBlockData implements PersistentDataContainer {
 
     /**
      * Gets the block entry for this block used for {@link #DIRTY_BLOCKS}
+     *
      * @param block Block
      * @return Block entry
      */
@@ -206,6 +207,7 @@ public class CustomBlockData implements PersistentDataContainer {
 
     /**
      * Checks whether this block is flagged as "dirty"
+     *
      * @param block Block
      * @return Whether this block is flagged as "dirty"
      */
@@ -217,7 +219,8 @@ public class CustomBlockData implements PersistentDataContainer {
      * Sets this block as "dirty" and removes it from the list after the next tick.
      * <p>
      * If the plugin is disabled, this method will do nothing, to prevent the IllegalPluginAccessException.
-     * @param plugin Plugin
+     *
+     * @param plugin     Plugin
      * @param blockEntry Block entry
      */
     static void setDirty(Plugin plugin, Map.Entry<UUID, BlockVector> blockEntry) {
@@ -230,8 +233,9 @@ public class CustomBlockData implements PersistentDataContainer {
 
     /**
      * Gets the NamespacedKey for this block
+     *
      * @param plugin Plugin
-     * @param block Block
+     * @param block  Block
      * @return NamespacedKey
      */
     private static NamespacedKey getKey(Plugin plugin, Block block) {
@@ -342,9 +346,9 @@ public class CustomBlockData implements PersistentDataContainer {
     private static Set<Block> getBlocksWithCustomData(final @NotNull Chunk chunk, final @NotNull NamespacedKey namespace) {
         final PersistentDataContainer chunkPDC = chunk.getPersistentDataContainer();
         return chunkPDC.getKeys().stream().filter(key -> key.getNamespace().equals(namespace.getNamespace()))
-                .map(key -> getBlockFromKey(key, chunk))
-                .filter(Objects::nonNull)
-                .collect(Collectors.toSet());
+            .map(key -> getBlockFromKey(key, chunk))
+            .filter(Objects::nonNull)
+            .collect(Collectors.toSet());
     }
 
     /**

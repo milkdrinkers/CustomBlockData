@@ -22,8 +22,8 @@
 
 package com.github.milkdrinkers.customblockdata;
 
-import com.github.milkdrinkers.customblockdata.events.CustomBlockDataRemoveEvent;
 import com.github.milkdrinkers.customblockdata.events.CustomBlockDataMoveEvent;
+import com.github.milkdrinkers.customblockdata.events.CustomBlockDataRemoveEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -71,7 +71,7 @@ final class BlockDataListener implements Listener {
     }
 
     private boolean callEvent(Block block, Event bukkitEvent) {
-        if(!CustomBlockData.hasCustomBlockData(block, plugin) || CustomBlockData.isProtected(block, plugin)) {
+        if (!CustomBlockData.hasCustomBlockData(block, plugin) || CustomBlockData.isProtected(block, plugin)) {
             return false;
         }
 
@@ -83,15 +83,15 @@ final class BlockDataListener implements Listener {
 
     private void callAndRemoveBlockStateList(List<BlockState> blockStates, Event bukkitEvent) {
         blockStates.stream()
-                .map(BlockState::getBlock)
-                .filter(customDataPredicate)
-                .forEach(block -> callAndRemove(block,bukkitEvent));
+            .map(BlockState::getBlock)
+            .filter(customDataPredicate)
+            .forEach(block -> callAndRemove(block, bukkitEvent));
     }
 
     private void callAndRemoveBlockList(List<Block> blocks, Event bukkitEvent) {
         blocks.stream()
-                .filter(customDataPredicate)
-                .forEach(block -> callAndRemove(block,bukkitEvent));
+            .filter(customDataPredicate)
+            .forEach(block -> callAndRemove(block, bukkitEvent));
     }
 
     private void callAndRemove(Block block, Event bukkitEvent) {
@@ -107,21 +107,21 @@ final class BlockDataListener implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onPlace(BlockPlaceEvent event) {
-        if(!CustomBlockData.isDirty(event.getBlock())) {
+        if (!CustomBlockData.isDirty(event.getBlock())) {
             callAndRemove(event);
         }
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onEntity(EntityChangeBlockEvent event) {
-        if(event.getTo() != event.getBlock().getType()) {
+        if (event.getTo() != event.getBlock().getType()) {
             callAndRemove(event.getBlock(), event);
         }
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onExplode(BlockExplodeEvent event) {
-        callAndRemoveBlockList(event.blockList(),event);
+        callAndRemoveBlockList(event.blockList(), event);
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
@@ -146,8 +146,8 @@ final class BlockDataListener implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onFade(BlockFadeEvent event) {
-        if(event.getBlock().getType() == Material.FIRE) return;
-        if(event.getNewState().getType() != event.getBlock().getType()) {
+        if (event.getBlock().getType() == Material.FIRE) return;
+        if (event.getNewState().getType() != event.getBlock().getType()) {
             callAndRemove(event);
         }
     }
@@ -167,7 +167,7 @@ final class BlockDataListener implements Listener {
         BlockFace direction = bukkitEvent.getDirection();
         blocks.stream().filter(customDataPredicate).forEach(block -> {
             CustomBlockData cbd = new CustomBlockData(block, plugin);
-            if(cbd.isEmpty() || cbd.isProtected()) return;
+            if (cbd.isEmpty() || cbd.isProtected()) return;
             Block destinationBlock = block.getRelative(direction);
             CustomBlockDataMoveEvent moveEvent = new CustomBlockDataMoveEvent(plugin, block, destinationBlock, bukkitEvent);
             Bukkit.getPluginManager().callEvent(moveEvent);
