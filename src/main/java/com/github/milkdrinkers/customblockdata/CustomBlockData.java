@@ -525,11 +525,6 @@ public class CustomBlockData implements PersistentDataContainer {
         return pdc.isEmpty();
     }
 
-    @Override
-    public void copyTo(@NotNull PersistentDataContainer persistentDataContainer, boolean b) {
-
-    }
-
     @NotNull
     @Override
     public PersistentDataAdapterContext getAdapterContext() {
