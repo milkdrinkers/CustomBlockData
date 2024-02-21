@@ -2,8 +2,8 @@ import java.time.Instant
 
 plugins {
     `java-library`
-
-    id("com.github.johnrengelman.shadow") version "8.1.1"
+    `maven-publish`
+    signing
 
     eclipse
     idea
@@ -17,8 +17,8 @@ val mainPackage = "${project.group}.${rootProject.name}"
 java {
     toolchain.languageVersion.set(JavaLanguageVersion.of(8))
     withJavadocJar()
+    withSourcesJar()
 }
-
 
 repositories {
     mavenCentral()
@@ -52,10 +52,6 @@ tasks {
         }
     }
 
-    build {
-        dependsOn(shadowJar)
-    }
-
     compileJava {
         options.encoding = Charsets.UTF_8.name() // We want UTF-8 for everything
 
@@ -72,42 +68,61 @@ tasks {
     processResources {
         filteringCharset = Charsets.UTF_8.name() // We want UTF-8 for everything
     }
+}
 
-    shadowJar {
-        archiveBaseName.set(project.name)
-        archiveClassifier.set("")
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = "com.github.milkdrinkers"
+            artifactId = "custom-block-data"
+            version = "${rootProject.version}"
 
-        // Shadow classes
-        fun reloc(originPkg: String, targetPkg: String) = relocate(originPkg, "${mainPackage}.lib.${targetPkg}")
+            pom {
+                name.set("CustomBlockData")
+                description.set(rootProject.description.orEmpty())
+                url.set("https://github.com/milkdrinkers/CustomBlockData")
+                licenses {
+                    license {
+                        name.set("GNU General Public License version 3")
+                        url.set("https://opensource.org/license/gpl-3-0/")
+                    }
+                }
+                developers {
+                    developer {
+                        id.set("darksaid98")
+                        name.set("darksaid98")
+                        organization.set("Milkdrinkers")
+                        organizationUrl.set("https://github.com/milkdrinkers")
+                    }
+                    developer {
+                        id.set("mfnalex")
+                        name.set("Alexander Majka")
+                        email.set("mfnalex@jeff-media.com")
+                        organization.set("JEFF Media GbR")
+                        organizationUrl.set("jeff-media.com")
+                    }
+                }
+                scm {
+                    connection.set("scm:git:git://github.com/milkdrinkers/CustomBlockData.git")
+                    developerConnection.set("scm:git:ssh://github.com:milkdrinkers/CustomBlockData.git")
+                    url.set("https://github.com/milkdrinkers/CustomBlockData")
+                }
+            }
 
-//        reloc("space.arim.morepaperlib", "morepaperlib")
-//        reloc("com.github.milkdrinkers.Crate", "crate")
-//        reloc("com.github.milkdrinkers.colorparser", "colorparser")
-//        reloc("dev.jorel.commandapi", "commandapi")
-//        reloc("dev.triumphteam.gui", "gui")
-//        reloc("com.zaxxer.hikari", "hikaricp")
-
-        minimize()
+            from(components["java"])
+        }
     }
 
-    /*runServer {
-        // Configure the Minecraft version for our task.
-        minecraftVersion("1.20.2")
-
-        // IntelliJ IDEA debugger setup: https://docs.papermc.io/paper/dev/debugging#using-a-remote-debugger
-        jvmArgs("-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005", "-DPaper.IgnoreJavaVersion=true", "-Dcom.mojang.eula.agree=true", "-DIReallyKnowWhatIAmDoingISwear")
-        systemProperty("terminal.jline", false)
-        systemProperty("terminal.ansi", true)
-
-        // Automatically install dependencies
-        downloadPlugins {
-//            modrinth("carbon", "2.1.0-beta.21")
-//            github("jpenilla", "MiniMOTD", "v2.0.13", "minimotd-bukkit-2.0.13.jar")
-//            hangar("squaremap", "1.2.0")
-//            url("https://download.luckperms.net/1515/bukkit/loader/LuckPerms-Bukkit-5.4.102.jar")
-            github("MilkBowl", "Vault", "1.7.3", "Vault.jar")
+    repositories {
+        maven {
+            name = "milkdrinkers"
+            url = uri("https://maven.athyrium.eu/releases")
+            credentials {
+                username = System.getenv("MAVEN_USERNAME")
+                password = System.getenv("MAVEN_PASSWORD")
+            }
         }
-    }*/
+    }
 }
 
 // Apply custom version arg
