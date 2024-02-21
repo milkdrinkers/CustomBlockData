@@ -32,7 +32,13 @@ import org.jetbrains.annotations.Nullable;
  * Called when a block's CustomBlockData is about to be removed because the block was broken, replaced, or has changed in other ways.
  */
 public class CustomBlockDataRemoveEvent extends CustomBlockDataEvent {
-
+    /**
+     * Instantiates a new Custom block data remove event.
+     *
+     * @param plugin      the plugin
+     * @param block       the block
+     * @param bukkitEvent the bukkit event
+     */
     public CustomBlockDataRemoveEvent(@NotNull Plugin plugin, @NotNull Block block, @Nullable Event bukkitEvent) {
         super(plugin, block, bukkitEvent);
     }

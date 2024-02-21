@@ -55,6 +55,13 @@ public class CustomBlockDataEvent extends Event implements Cancellable {
     final @NotNull Event bukkitEvent;
     boolean isCancelled = false;
 
+    /**
+     * Instantiates a new Custom block data event.
+     *
+     * @param plugin      the plugin
+     * @param block       the block
+     * @param bukkitEvent the bukkit event
+     */
     protected CustomBlockDataEvent(@NotNull Plugin plugin, @NotNull Block block, @NotNull Event bukkitEvent) {
         this.plugin = plugin;
         this.block = block;
@@ -64,6 +71,8 @@ public class CustomBlockDataEvent extends Event implements Cancellable {
 
     /**
      * Gets the block involved in this event.
+     *
+     * @return the block
      */
     public @NotNull Block getBlock() {
         return block;
@@ -72,6 +81,8 @@ public class CustomBlockDataEvent extends Event implements Cancellable {
     /**
      * Gets the underlying Bukkit Event that has caused this event to be called. The Bukkit Event is currently listened
      * on in MONITOR priority.
+     *
+     * @return the bukkit event
      */
     public @NotNull Event getBukkitEvent() {
         return bukkitEvent;
@@ -79,6 +90,8 @@ public class CustomBlockDataEvent extends Event implements Cancellable {
 
     /**
      * Gets the CustomBlockData involved in this event.
+     *
+     * @return the custom block data
      */
     public @NotNull CustomBlockData getCustomBlockData() {
         return cbd;
@@ -102,6 +115,8 @@ public class CustomBlockDataEvent extends Event implements Cancellable {
 
     /**
      * Gets the reason for this change of CustomBlockData
+     *
+     * @return the reason
      */
     public @NotNull Reason getReason() {
         if (bukkitEvent == null) return Reason.UNKNOWN;
@@ -112,6 +127,11 @@ public class CustomBlockDataEvent extends Event implements Cancellable {
         return Reason.UNKNOWN;
     }
 
+    /**
+     * Gets handler list.
+     *
+     * @return the handler list
+     */
     @NotNull
     public static HandlerList getHandlerList() {
         return HANDLERS;
@@ -199,6 +219,9 @@ public class CustomBlockDataEvent extends Event implements Cancellable {
         @Deprecated
         LEAVES_DECAY(LeavesDecayEvent.class),
 
+        /**
+         * Represents an unknown event.
+         */
         UNKNOWN((Class<? extends Event>) null);
 
         private final @NotNull List<Class<? extends Event>> eventClasses;
@@ -210,6 +233,8 @@ public class CustomBlockDataEvent extends Event implements Cancellable {
 
         /**
          * Gets a list of Bukkit Event classes that are associated with this Reason
+         *
+         * @return the applicable events
          */
         public @NotNull List<Class<? extends Event>> getApplicableEvents() {
             return this.eventClasses;

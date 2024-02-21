@@ -258,6 +258,10 @@ public class CustomBlockData implements PersistentDataContainer {
 
     /**
      * Gets the block represented by the given {@link NamespacedKey} in the given {@link Chunk}
+     *
+     * @param key   the key
+     * @param chunk the chunk
+     * @return the block from key
      */
     @Nullable
     static Block getBlockFromKey(final NamespacedKey key, final Chunk chunk) {
@@ -273,6 +277,9 @@ public class CustomBlockData implements PersistentDataContainer {
 
     /**
      * Returns the given {@link World}'s minimum build height, or 0 if not supported in this Bukkit version
+     *
+     * @param world the world
+     * @return the world min height
      */
     static int getWorldMinHeight(final World world) {
         if (HAS_MIN_HEIGHT_METHOD) {
@@ -284,6 +291,10 @@ public class CustomBlockData implements PersistentDataContainer {
 
     /**
      * Get if the given Block has any CustomBockData associated with it
+     *
+     * @param block  the block
+     * @param plugin the plugin
+     * @return the boolean
      */
     public static boolean hasCustomBlockData(Block block, Plugin plugin) {
         return block.getChunk().getPersistentDataContainer().has(getKey(plugin, block), PersistentDataType.TAG_CONTAINER);
@@ -292,6 +303,8 @@ public class CustomBlockData implements PersistentDataContainer {
     /**
      * Get if the given Block's CustomBlockData is protected. Protected CustomBlockData will not be changed by any Bukkit Events
      *
+     * @param block  the block
+     * @param plugin the plugin
      * @return true if the Block's CustomBlockData is protected, false if it doesn't have any CustomBlockData or it's not protected
      * @see #registerListener(Plugin)
      */
@@ -367,6 +380,8 @@ public class CustomBlockData implements PersistentDataContainer {
     /**
      * Gets the proper primitive {@link PersistentDataType} for the given {@link NamespacedKey} in the given {@link PersistentDataContainer}
      *
+     * @param pdc the pdc
+     * @param key the key
      * @return The primitive PersistentDataType for the given key, or null if the key doesn't exist
      */
     public static PersistentDataType<?, ?> getDataType(PersistentDataContainer pdc, NamespacedKey key) {
@@ -378,6 +393,8 @@ public class CustomBlockData implements PersistentDataContainer {
 
     /**
      * Gets the Block associated with this CustomBlockData, or null if the world is no longer loaded.
+     *
+     * @return the block
      */
     public @Nullable Block getBlock() {
         World world = Bukkit.getWorld(blockEntry.getKey());
@@ -402,6 +419,7 @@ public class CustomBlockData implements PersistentDataContainer {
     /**
      * Gets whether this CustomBlockData is protected. Protected CustomBlockData will not be changed by any Bukkit Events
      *
+     * @return the boolean
      * @see #registerListener(Plugin)
      */
     public boolean isProtected() {
@@ -411,6 +429,7 @@ public class CustomBlockData implements PersistentDataContainer {
     /**
      * Sets whether this CustomBlockData is protected. Protected CustomBlockData will not be changed by any Bukkit Events
      *
+     * @param isProtected the is protected
      * @see #registerListener(Plugin)
      */
     public void setProtected(boolean isProtected) {
@@ -444,6 +463,9 @@ public class CustomBlockData implements PersistentDataContainer {
     /**
      * Copies all data to another block. Data already present in the destination block will keep intact, unless it gets
      * overwritten by identically named keys. Data in the source block won't be changed.
+     *
+     * @param block  the block
+     * @param plugin the plugin
      */
     @SuppressWarnings({"unchecked", "rawtypes", "ConstantConditions"})
     public void copyTo(Block block, Plugin plugin) {
@@ -550,6 +572,7 @@ public class CustomBlockData implements PersistentDataContainer {
     /**
      * Gets the proper primitive {@link PersistentDataType} for the given {@link NamespacedKey}
      *
+     * @param key the key
      * @return The primitive PersistentDataType for the given key, or null if the key doesn't exist
      */
     public PersistentDataType<?, ?> getDataType(NamespacedKey key) {

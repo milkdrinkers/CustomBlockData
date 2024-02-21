@@ -39,11 +39,24 @@ public class CustomBlockDataMoveEvent extends CustomBlockDataEvent {
 
     private final @NotNull Block blockTo;
 
+    /**
+     * Instantiates a new Custom block data move event.
+     *
+     * @param plugin      the plugin
+     * @param blockFrom   the block from
+     * @param blockTo     the block to
+     * @param bukkitEvent the bukkit event
+     */
     public CustomBlockDataMoveEvent(@NotNull Plugin plugin, @NotNull Block blockFrom, @NotNull Block blockTo, @NotNull Event bukkitEvent) {
         super(plugin, blockFrom, bukkitEvent);
         this.blockTo = blockTo;
     }
 
+    /**
+     * Gets block to.
+     *
+     * @return the block to
+     */
     public @NotNull Block getBlockTo() {
         return blockTo;
     }
