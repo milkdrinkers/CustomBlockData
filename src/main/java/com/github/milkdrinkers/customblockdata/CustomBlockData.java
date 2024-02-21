@@ -514,11 +514,10 @@ public class CustomBlockData implements PersistentDataContainer {
      * @see PersistentDataContainer#serializeToBytes()
      * @deprecated Paper-only
      */
-    @NotNull
     @Override
     @PaperOnly
     @Deprecated
-    public byte[] serializeToBytes() throws IOException {
+    public byte @NotNull [] serializeToBytes() throws IOException {
         return pdc.serializeToBytes();
     }
 
@@ -529,7 +528,7 @@ public class CustomBlockData implements PersistentDataContainer {
     @Override
     @PaperOnly
     @Deprecated
-    public void readFromBytes(byte[] bytes, boolean clear) throws IOException {
+    public void readFromBytes(byte @NotNull [] bytes, boolean clear) throws IOException {
         pdc.readFromBytes(bytes, clear);
     }
 
@@ -540,7 +539,7 @@ public class CustomBlockData implements PersistentDataContainer {
     @Override
     @PaperOnly
     @Deprecated
-    public void readFromBytes(byte[] bytes) throws IOException {
+    public void readFromBytes(byte @NotNull [] bytes) throws IOException {
         pdc.readFromBytes(bytes);
     }
 
