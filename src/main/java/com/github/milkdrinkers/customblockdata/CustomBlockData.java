@@ -538,33 +538,30 @@ public class CustomBlockData implements PersistentDataContainer {
 
     /**
      * @see PersistentDataContainer#serializeToBytes()
-     * @deprecated Paper-only
+     * @implSpec Paper-API
      */
     @Override
     @PaperOnly
-    @Deprecated
     public byte @NotNull [] serializeToBytes() throws IOException {
         return pdc.serializeToBytes();
     }
 
     /**
-     * @see PersistentDataContainer#readFromBytes(byte[], boolean) ()
-     * @deprecated Paper-only
+     * @see PersistentDataContainer#readFromBytes(byte[], boolean)
+     * @implSpec Paper-API
      */
     @Override
     @PaperOnly
-    @Deprecated
     public void readFromBytes(byte @NotNull [] bytes, boolean clear) throws IOException {
         pdc.readFromBytes(bytes, clear);
     }
 
     /**
-     * @see PersistentDataContainer#readFromBytes(byte[]) ()
-     * @deprecated Paper-only
+     * @see PersistentDataContainer#readFromBytes(byte[])
+     * @implSpec Paper-API
      */
     @Override
     @PaperOnly
-    @Deprecated
     public void readFromBytes(byte @NotNull [] bytes) throws IOException {
         pdc.readFromBytes(bytes);
     }

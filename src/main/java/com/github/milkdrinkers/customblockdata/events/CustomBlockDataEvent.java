@@ -32,6 +32,7 @@ import org.bukkit.event.entity.EntityChangeBlockEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.world.StructureGrowEvent;
 import org.bukkit.plugin.Plugin;
+import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
@@ -214,9 +215,9 @@ public class CustomBlockDataEvent extends Event implements Cancellable {
          * Represents leaves decaying. This is currently not called because of performance reasons. In future versions,
          * there will be a method to enable listening to this.
          *
-         * @deprecated Draft API
+         * @apiNote Experimental API
          */
-        @Deprecated
+        @ApiStatus.Experimental
         LEAVES_DECAY(LeavesDecayEvent.class),
 
         /**

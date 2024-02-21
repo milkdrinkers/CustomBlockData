@@ -61,7 +61,13 @@ tasks {
     }
 
     javadoc {
+        isFailOnError = false
+        val options = options as StandardJavadocDocletOptions
         options.encoding = Charsets.UTF_8.name() // We want UTF-8 for everything
+        options.overview = "src/main/javadoc/overview.html"
+        options.isDocFilesSubDirs = true
+        options.tags("apiNote:a:API Note:", "implNote:a:Implementation Note:", "implSpec:a:Implementation Requirements:")
+        options.use()
     }
 
     processResources {
