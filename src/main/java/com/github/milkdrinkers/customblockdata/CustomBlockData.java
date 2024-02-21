@@ -356,7 +356,7 @@ public class CustomBlockData implements PersistentDataContainer {
      */
     @NotNull
     public static Set<Block> getBlocksWithCustomData(final String namespace, final Chunk chunk) {
-        @SuppressWarnings("deprecation") final NamespacedKey dummy = new NamespacedKey(namespace, "dummy");
+        final NamespacedKey dummy = new NamespacedKey(namespace, "dummy");
         return getBlocksWithCustomData(chunk, dummy);
     }
 
