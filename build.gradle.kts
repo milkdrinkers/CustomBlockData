@@ -9,13 +9,12 @@ plugins {
     idea
 }
 
-group = "com.jeff-media"
+group = "com.github.milkdrinkers"
 version = "2.2.2"
 description = "Bukkit API Library to add PersistentDataContainers to blocks"
-val mainPackage = "${project.group}.${rootProject.name}"
 
 java {
-    toolchain.languageVersion.set(JavaLanguageVersion.of(8))
+    toolchain.languageVersion.set(JavaLanguageVersion.of(17))
     withJavadocJar()
     withSourcesJar()
 }

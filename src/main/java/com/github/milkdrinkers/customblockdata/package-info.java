@@ -20,6 +20,6 @@
  * Donations: https://paypal.me/mfnalex
  */
 /**
- * Classes dedicated to handling triggered code executions
+ * The root package of the CustomBlockData API
  */
-package com.jeff_media.customblockdata.events;
+package com.github.milkdrinkers.customblockdata;

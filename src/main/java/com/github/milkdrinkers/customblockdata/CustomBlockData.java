@@ -20,8 +20,9 @@
  * Donations: https://paypal.me/mfnalex
  */
 
-package com.jeff_media.customblockdata;
+package com.github.milkdrinkers.customblockdata;
 
+import com.github.milkdrinkers.customblockdata.events.CustomBlockDataRemoveEvent;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -307,7 +308,7 @@ public class CustomBlockData implements PersistentDataContainer {
      * will <b>not</b> be registered by this (but pull requests are welcome, of course)
      * <p>
      * For example, when you call this method in onEnable, CustomBlockData will now get automatically removed from a block
-     * when a player breaks this block. It will additionally call custom events like {@link com.jeff_media.customblockdata.events.CustomBlockDataRemoveEvent}.
+     * when a player breaks this block. It will additionally call custom events like {@link CustomBlockDataRemoveEvent}.
      * Those events implement {@link org.bukkit.event.Cancellable}. If one of the CustomBlockData events is cancelled,
      * it will not alter any CustomBlockData.
      *

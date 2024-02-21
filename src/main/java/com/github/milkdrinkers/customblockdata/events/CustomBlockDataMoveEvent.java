@@ -20,9 +20,9 @@
  * Donations: https://paypal.me/mfnalex
  */
 
-package com.jeff_media.customblockdata.events;
+package com.github.milkdrinkers.customblockdata.events;
 
-import com.jeff_media.customblockdata.CustomBlockData;
+import com.github.milkdrinkers.customblockdata.CustomBlockData;
 import org.bukkit.block.Block;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
