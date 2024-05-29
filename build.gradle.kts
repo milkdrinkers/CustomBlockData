@@ -44,18 +44,8 @@ dependencies {
 }
 
 tasks {
-    test {
-        useJUnitPlatform()
-        testLogging {
-            events("passed", "skipped", "failed")
-        }
-    }
-
     compileJava {
-        options.encoding = Charsets.UTF_8.name() // We want UTF-8 for everything
-
-        // Set the release flag. This configures what version bytecode the compiler will emit, as well as what JDK APIs are usable.
-        // See https://openjdk.java.net/jeps/247 for more information.
+        options.encoding = Charsets.UTF_8.name()
         options.release.set(17)
         options.compilerArgs.addAll(arrayListOf("-Xlint:all", "-Xlint:-processing", "-Xdiags:verbose"))
     }
@@ -63,7 +53,7 @@ tasks {
     javadoc {
         isFailOnError = false
         val options = options as StandardJavadocDocletOptions
-        options.encoding = Charsets.UTF_8.name() // We want UTF-8 for everything
+        options.encoding = Charsets.UTF_8.name()
         options.overview = "src/main/javadoc/overview.html"
         options.isDocFilesSubDirs = true
         options.tags("apiNote:a:API Note:", "implNote:a:Implementation Note:", "implSpec:a:Implementation Requirements:")
@@ -71,14 +61,21 @@ tasks {
     }
 
     processResources {
-        filteringCharset = Charsets.UTF_8.name() // We want UTF-8 for everything
+        filteringCharset = Charsets.UTF_8.name()
+    }
+
+    test {
+        useJUnitPlatform()
+        testLogging {
+            events("passed", "skipped", "failed")
+        }
     }
 }
 
 publishing {
     publications {
         create<MavenPublication>("maven") {
-            groupId = "com.github.milkdrinkers"
+            groupId = "${rootProject.group}"
             artifactId = "customblockdata"
             version = "${rootProject.version}"
 
@@ -120,8 +117,16 @@ publishing {
 
     repositories {
         maven {
-            name = "milkdrinkers"
+            name = "releases"
             url = uri("https://maven.athyrium.eu/releases")
+            credentials {
+                username = System.getenv("MAVEN_USERNAME")
+                password = System.getenv("MAVEN_PASSWORD")
+            }
+        }
+        maven {
+            name = "snapshots"
+            url = uri("https://maven.athyrium.eu/snapshots")
             credentials {
                 username = System.getenv("MAVEN_USERNAME")
                 password = System.getenv("MAVEN_PASSWORD")
