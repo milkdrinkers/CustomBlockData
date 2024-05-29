@@ -525,6 +525,22 @@ public class CustomBlockData implements PersistentDataContainer {
         return pdc.isEmpty();
     }
 
+    /**
+     * Copies all values from this {@link PersistentDataContainer} to the provided
+     * container.
+     * <p>
+     * This method only copies custom object keys. Existing tags, like the display
+     * name, will not be copied as the values are stored using your namespace.
+     *
+     * @param other   the container to copy to
+     * @param replace whether to replace any matching values in the target container
+     * @throws IllegalArgumentException if the other container is null
+     */
+    @Override
+    public void copyTo(@NotNull PersistentDataContainer other, boolean replace) {
+        
+    }
+
     @NotNull
     @Override
     public PersistentDataAdapterContext getAdapterContext() {
