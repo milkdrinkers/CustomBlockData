@@ -71,6 +71,18 @@ tasks {
     }
 }
 
+// Apply custom version arg
+val versionArg = if (hasProperty("customVersion"))
+    (properties["customVersion"] as String).uppercase() // Uppercase version string
+else
+    "${rootProject.version}-SNAPSHOT-${Instant.now().epochSecond}" // Append snapshot to version
+
+// Strip prefixed "v" from version tag
+rootProject.version = if (versionArg.first().equals('v', true))
+    versionArg.substring(1)
+else
+    versionArg.uppercase()
+
 publishing {
     publications {
         create<MavenPublication>("maven") {
@@ -133,15 +145,3 @@ publishing {
         }
     }
 }
-
-// Apply custom version arg
-val versionArg = if (hasProperty("customVersion"))
-    (properties["customVersion"] as String).uppercase() // Uppercase version string
-else
-    "${project.version}-SNAPSHOT-${Instant.now().epochSecond}" // Append snapshot to version
-
-// Strip prefixed "v" from version tag
-project.version = if (versionArg.first().equals('v', true))
-    versionArg.substring(1)
-else
-    versionArg.uppercase()
